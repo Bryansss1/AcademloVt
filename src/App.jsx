@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
     <UsuariosAgg/>
-    <small>derechos bryans2022 agregando usuarios</small>
-    <small>actualizacion/le falta localstorage y muy pronto base de datos y una bsuqeda por id y name</small>
+    <p className='footer-text'>derechos bryans2022 agregando usuarios</p>
+    <p className='footer-text'>actualizacion/le falta localstorage y muy pronto base de datos y una bsuqeda por id y name</p>
     </div>
   )
 }

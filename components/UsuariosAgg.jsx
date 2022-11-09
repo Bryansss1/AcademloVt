@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 
 const UsuariosAgg = () => {
-    const notas=[{
-        name:"Bryan Sanabria",
-        age:18,
-        description:"Soy una persona dedicada a lo que amo y al aprendizaje",
-        img:"https://i.ytimg.com/vi/jMfAZR9oE_Q/maxresdefault.jpg"
-    }]
 
-const [notes,setNotes]=useState(notas)
 const [name,setName]=useState("nombre")
 const [imgg,setImg]=useState("https://cdn-icons-png.flaticon.com/512/21/21104.png")
 const [descriptiongg,setDes]=useState("descripcion")
 const [ageis,setAge]=useState("edad")
+
+const idramdon=Math.floor(Math.random()*1000000)+1
+const idramdon1=Math.floor(Math.random()*1000000)+1
+
+const notas=[{
+    name:"Bryan Sanabria",
+    age:18,
+    description:"Soy una persona dedicada a lo que amo y al aprendizaje",
+    img:"https://i.ytimg.com/vi/jMfAZR9oE_Q/maxresdefault.jpg",
+    id:idramdon1
+}]
+
+const [notes,setNotes]=useState(notas)
 
     const inputImg=(e)=>{
         
@@ -28,19 +34,25 @@ const [ageis,setAge]=useState("edad")
         setDes("tu descripcion")
         setDes(e.target.value)
     }
+
     const summmitchange=(e)=>{
         e.preventDefault()
         const Add={
             name:name,
             age:ageis,
             description:descriptiongg,
-            img:imgg
+            img:imgg,
+            id:idramdon
         } 
         setNotes([...notes,Add])
-       
+       console.log(Add)
     }
 
-   
+   const deletee=(proid)=>{
+        const filtrado=notes.filter(pro=>proid.id!==pro.id)
+        setNotes(filtrado)
+        console.log(proid.id)
+   }
 
     return (
         <div>
@@ -49,15 +61,16 @@ const [ageis,setAge]=useState("edad")
             <img className='acam' src='https://www.academlo.com/logo_academlo.png'/>
             </div>
             <div className='users'>
-            {notes.map((user,index)=>{
+            {notes.map((user)=>{
                 return(
-                    <div key={index} className='card-user'>
+                    <div key={user.id} className='card-user'>
                     <h3>{user.name}</h3>
                     <ul>
                     <li>Tengo:{user.age}</li>
                     <li>Algo sobre mi:<br></br>{user.description}</li>
                     </ul>
                     <img src={user.img}/>
+                    <button onClick={()=>deletee(user)}>delete</button>
                     </div>
                 )
             })}
